@@ -1,0 +1,29 @@
+presubmits:
+  - name: pre-commit
+  decorate: true
+  skip_report: false
+  always_run: true
+  context: aicoe-ci/prow/pre-commit
+  spec:
+    containers:
+      - image: quay.io/larsks/opf-go-precommit:6fb0601
+        command:
+          - "pre-commit"
+          - "run"
+          - "--all-files"
+        env:
+          - name: XDG_CACHE_HOME: /cache
+            value:
+            GOCACHE: /cache/go-build
+          GOMODCACHE: /cache/go-mod
+          PRE_COMMIT_HOME: /cache/pre-commit
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "300m"
+          limits:
+            memory: "1Gi"
+            cpu: "300m"
+
+
+# bazel run //prow/cmd/checkconfig -- --plugin-config=path/to/plugins.yaml --config-path=path/to/config.yaml

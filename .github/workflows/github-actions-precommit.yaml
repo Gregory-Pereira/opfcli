@@ -1,0 +1,12 @@
+name: "Prow github pre-commit"
+on:
+  push:
+
+skip-report:
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: quay.io/larsks/opf-go-precommit:6fb0601
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
