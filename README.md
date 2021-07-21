@@ -28,6 +28,7 @@ Available Commands:
   enable-monitoring Enable monitoring for a Kubernetes namespace
   grant-access      Grant a group access to a namespace
   help              Help about any command
+  onboard           Onboards from onboarding to cluster issue (currently pipeline only)
 
 Flags:
   -a, --app-name string   application name (default "cluster-scope")
@@ -47,7 +48,9 @@ Usage:
   opfcli create-group group [flags]
 
 Flags:
-  -h, --help                 help for create-project
+  -h, --help                  help for create-project
+  -d, --display-name          short team description for easy identification of project
+  -n                          do not set a limitrange on this project
 ```
 
 ### create-project
@@ -101,6 +104,18 @@ Usage:
 
 Flags:
   -h, --help   help for grant-access
+```
+
+### Onboard
+```
+follows the onboarding to cluster MD for steps to onboard
+
+Usage:
+  opfcli onboard <file-path>
+
+Flags:
+  -
+
 ```
 
 Use "opfcli [command] --help" for more information about a command.

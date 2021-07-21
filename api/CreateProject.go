@@ -2,10 +2,9 @@ package api
 
 import (
 	"fmt"
-	"path/filepath"
-
 	"github.com/operate-first/opfcli/constants"
 	"github.com/operate-first/opfcli/utils"
+	"path/filepath"
 )
 
 func (api *API) ValidateQuota(projectQuota string) error {
@@ -15,7 +14,6 @@ func (api *API) ValidateQuota(projectQuota string) error {
 		"resourcequotas",
 		projectQuota,
 	)
-
 	exists, err := utils.PathExists(quotaPath)
 	if err != nil {
 		return err

@@ -2,15 +2,13 @@ package api
 
 import (
 	"fmt"
-	"io/ioutil"
-	"os"
-	"path/filepath"
-
-	log "github.com/sirupsen/logrus"
-
 	"github.com/operate-first/opfcli/constants"
 	"github.com/operate-first/opfcli/models"
 	"github.com/operate-first/opfcli/utils"
+	log "github.com/sirupsen/logrus"
+	"io/ioutil"
+	"os"
+	"path/filepath"
 )
 
 func (api *API) CreateGroup(groupName string, existsOk bool) error {
@@ -49,6 +47,7 @@ func (api *API) CreateGroup(groupName string, existsOk bool) error {
 		nil,
 		"",
 	)
+
 	err = kustom.Write(filepath.Dir(path))
 	if err != nil {
 		return err
