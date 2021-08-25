@@ -14,6 +14,7 @@ func (api *API) ValidateQuota(projectQuota string) error {
 		"resourcequotas",
 		projectQuota,
 	)
+	
 	exists, err := utils.PathExists(quotaPath)
 	if err != nil {
 		return err

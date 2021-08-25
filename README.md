@@ -28,7 +28,7 @@ Available Commands:
   enable-monitoring Enable monitoring for a Kubernetes namespace
   grant-access      Grant a group access to a namespace
   help              Help about any command
-  onboard           Onboards from onboarding to cluster issue (currently pipeline only)
+  onboard           Creates Groups, Namespaces, and Roles for a new Operate First project from a deployment file
 
 Flags:
   -a, --app-name string   application name (default "cluster-scope")
