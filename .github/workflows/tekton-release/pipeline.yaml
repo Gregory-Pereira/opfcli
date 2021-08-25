@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: build-on-release
+spec:
+  resources:
+    - name: source-repo
+      type: git
+  params:
+    - name: image-url
+      type: string
+      description: where to push the newly built image to e.g. quay.io/user/image
+  tasks:
+    - name: build-image
+      taskRef:
+        name: buildah-task
+      params:
+        - name: IMAGE_URL
+          value: $(params.image-url)
+      resources:
+        inputs:
+          - name: source
+            resource: source-repo

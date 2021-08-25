@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: build-on-release-binding
+spec:
+  params:
+  - name: tag_name
+    value: $(body.release.tag_name)
+  - name: gitrepositoryurl
+    value: $(body.repository.clone_url)

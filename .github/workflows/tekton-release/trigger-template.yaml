@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: build-on-release-template
+spec:
+  params:
+  - name: tag_name
+    description: The newly created tag.
+    default: main
+  - name: gitrepositoryurl
+    description: The git repository url
+    default: https://github.com/operate-first/opfcli
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1alpha1
+    kind: PipelineRun
+    metadata:
+      name: build-on-release-run-$(uid)
+    spec:
+      serviceAccountName: demo-sa
+      pipelineRef:
+        name: build-on-release
+      params:
+        - name: image-url
+          value: quay.io/user/gregory_pereira0/opfcli:$(params.tag_name)
+      resources:
+        - name: source-repo
+          resourceSpec:
+            type: git
+            params:
+            - name: revision
+              value: $(params.tag_name)
+            - name: url
+              value: $(params.gitrepositoryurl)

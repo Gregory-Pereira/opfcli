@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: event-listener
+spec:
+  serviceAccountName: demo-sa
+  triggers:
+    - name: build-on-release
+      interceptors:
+        - cel: >-
+            filter: header.canonical('X-GitHub-Event') == 'release' &&
+                    body.action == 'published' &&
+                    body.repository.full_name == 'operate-first/opfcli' &&
+                    body.release.prerelease == false
+      bindings:
+        - name: build-on-release-binding
+      template:
+        name: build-on-release-template
